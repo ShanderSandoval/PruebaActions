@@ -1,24 +1,33 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IP Pública del Servidor</title>
+    <title>Resume</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script>
-        async function obtenerIP() {
-            try {
-                const respuesta = await fetch('https://api.ipify.org?format=json');
-                const data = await respuesta.json();
-                document.getElementById('ip').textContent = `IP Pública: ${data.ip}`;
-            } catch (error) {
-                console.error('Error al obtener la IP:', error);
-                document.getElementById('ip').textContent = 'Error al obtener la IP';
-            }
+        // Función para obtener la IP pública
+        function getPublicIP() {
+            fetch('http://checkip.amazonaws.com')
+                .then(response => response.text())
+                .then(ip => {
+                    document.getElementById('ip').textContent = ip; // Mostrar IP en el HTML
+                })
+                .catch(error => console.error('Error al obtener la IP:', error));
         }
     </script>
 </head>
-<body onload="obtenerIP()">
-    <h1>IP Pública del Servidor</h1>
-    <p id="ip">Cargando IP...</p>
+<body onload="getPublicIP()">
+    <div class="container">
+        <header>
+            <h1>Programacion Distribuida</h1>
+            <h1>Programacion Distribuida</h1>
+            <p>Test Github Actions</p>
+        </header>
+        <section>
+            <h2>Summary</h2>
+            <p>Hello.</p>
+            <p><strong>IP pública de la instancia EC2:</strong> <span id="ip">Cargando...</span></p> <!-- Aquí se mostrará la IP -->
+        </section>
+    </div>
 </body>
 </html>
+
