@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume</title>
     <link rel="stylesheet" type="text/css" href="style.css">
     <script>
-        // Función para obtener la IP pública
         function getPublicIP() {
-            fetch('http://checkip.amazonaws.com')
-                .then(response => response.text())
-                .then(ip => {
-                    document.getElementById('ip').textContent = ip; // Mostrar IP en el HTML
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('publicIP').textContent = 'Tu IP pública es: ' + data.ip;
                 })
-                .catch(error => console.error('Error al obtener la IP:', error));
+                .catch(error => {
+                    console.error('Error al obtener la IP:', error);
+                    document.getElementById('publicIP').textContent = 'No se pudo obtener la IP pública.';
+                });
         }
     </script>
 </head>
@@ -19,16 +23,16 @@
     <div class="container">
         <header>
             <h1>Programacion Distribuida</h1>
-            <h1>Programacion Distribuida</h1>
             <p>Test Github Actions</p>
         </header>
         <section>
             <h2>Summary</h2>
             <p>Hello.</p>
-            <p><strong>IP pública de la instancia EC2:</strong> <span id="ip">Cargando...</span></p> <!-- Aquí se mostrará la IP -->
+            <p id="publicIP"></p> <!-- Aquí se mostrará la IP pública -->
         </section>
     </div>
 </body>
 </html>
+
 
 
