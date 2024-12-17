@@ -36,10 +36,3 @@ jobs:
             sudo systemctl enable apache2
             cd home
             sudo mv * /var/www/html
-
-
-            # Move files to the correct directory
-            sudo mv ${TARGET}/* /var/www/html/
-
-            # Make sure Apache is serving the files
-            sudo systemctl restart apache2
