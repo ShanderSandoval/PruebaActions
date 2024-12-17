@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Resume</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+    <title>Resume</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script>
+        // Función para obtener la IP pública
+        function getPublicIP() {
+            fetch('http://checkip.amazonaws.com')
+                .then(response => response.text())
+                .then(ip => {
+                    document.getElementById('ip').textContent = ip; // Mostrar IP en el HTML
+                })
+                .catch(error => console.error('Error al obtener la IP:', error));
+        }
+    </script>
 </head>
-<body>
-	<div class="container">
-		<header>
-			<h1>Programacion Distribuida</h1>
-			<p>Test Github Actions/p>
-		</header>
-		<section>
-			<h2>Summary</h2>
-			<p>Hello.</p>
-		</section>
-	</div>
+<body onload="getPublicIP()">
+    <div class="container">
+        <header>
+            <h1>Programacion Distribuida</h1>
+            <h1>Programacion Distribuida</h1>
+            <p>Test Github Actions</p>
+        </header>
+        <section>
+            <h2>Summary</h2>
+            <p>Hello.</p>
+            <p><strong>IP pública de la instancia EC2:</strong> <span id="ip">Cargando...</span></p> <!-- Aquí se mostrará la IP -->
+        </section>
+    </div>
 </body>
 </html>
+
+
