@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server IP</title>
-    <link rel="stylesheet" href="style.css">
+    <title>IP Pública del Servidor</title>
+    <script>
+        async function obtenerIP() {
+            try {
+                const respuesta = await fetch('https://api.ipify.org?format=json');
+                const data = await respuesta.json();
+                document.getElementById('ip').textContent = `IP Pública: ${data.ip}`;
+            } catch (error) {
+                console.error('Error al obtener la IP:', error);
+                document.getElementById('ip').textContent = 'Error al obtener la IP';
+            }
+        }
+    </script>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>Información de la IP del Servidor</h1>
-            <p>Prueba de despliegue con GitHub Actions</p> <!-- Texto con acento -->
-        </header>
-        <section>
-            <h2>IP Pública del Servidor</h2>
-            <p id="serverIP">La IP pública del servidor es: {{SERVER_IP}}</p>
-        </section>
-    </div>
+<body onload="obtenerIP()">
+    <h1>IP Pública del Servidor</h1>
+    <p id="ip">Cargando IP...</p>
 </body>
 </html>
